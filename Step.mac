@@ -1,0 +1,94 @@
+%macro Step1 0
+mov rdx, [B+8*0]
+clc
+mulx R8, rax, [A+8*0]
+mov [C+8*0], rax
+mulx R9, rax, [A+8*1]
+adc R8, rax
+mulx R10, rax, [A+8*2]
+adc R9, rax
+mulx R11, rax, [A+8*3]
+adc R10, rax
+mulx R12, rax, [A+8*4]
+adc R11, rax
+mulx R13, rax, [A+8*5]
+adc R12, rax
+mulx R14, rax, [A+8*6]
+adc R13, rax
+mulx R15, rax, [A+8*7]
+adc R14, rax
+adc R15, 0
+%endmacro
+%macro Step2 1
+mov rdx, [B+8*%1]
+mulx rbx, rax, [A+8*0]
+add R8, rax
+adc rbx, 0
+mov [C+8*%1], R8
+mov rdi, [R1+8*0]
+mulx rcx, rdi, [A+8*1]
+add rdi, R9
+adc rcx, 0
+add rdi, rbx
+adc rcx, 0
+mov [R1+8*0], rdi
+mov rdi, [R1+8*1]
+mulx rbx, rdi, [A+8*2]
+add rdi, R10
+adc rbx, 0
+add rdi, rcx
+adc rbx, 0
+mov [R1+8*1], rdi
+mov rdi, [R1+8*2]
+mulx rcx, rdi, [A+8*3]
+add rdi, R11
+adc rcx, 0
+add rdi, rbx
+adc rcx, 0
+mov [R1+8*2], rdi
+mov rdi, [R1+8*3]
+mulx rbx, rdi, [A+8*4]
+add rdi, R12
+adc rbx, 0
+add rdi, rcx
+adc rbx, 0
+mov [R1+8*3], rdi
+mov rdi, [R1+8*4]
+mulx rcx, rdi, [A+8*5]
+add rdi, R13
+adc rcx, 0
+add rdi, rbx
+adc rcx, 0
+mov [R1+8*4], rdi
+mov rdi, [R1+8*5]
+mulx rbx, rdi, [A+8*6]
+add rdi, R14
+adc rbx, 0
+add rdi, rcx
+adc rbx, 0
+mov [R1+8*5], rdi
+mov rdi, [R1+8*6]
+mulx rcx, rdi, [A+8*7]
+add rdi, R15
+adc rcx, 0
+add rdi, rbx
+adc rcx, 0
+mov [R1+8*6], rdi
+mov [R1+8*7], rcx
+mov rcx, [R1+8*0]
+mov R8, rcx
+mov rcx, [R1+8*1]
+mov R9, rcx
+mov rcx, [R1+8*2]
+mov R10, rcx
+mov rcx, [R1+8*3]
+mov R11, rcx
+mov rcx, [R1+8*4]
+mov R12, rcx
+mov rcx, [R1+8*5]
+mov R13, rcx
+mov rcx, [R1+8*6]
+mov R14, rcx
+mov rcx, [R1+8*7]
+mov R15, rcx
+%endmacro
